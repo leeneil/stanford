@@ -6,7 +6,6 @@ import requests
 from parsers import *
 
 
-
 def get_html(url):
     r = requests.get(url)
     html = r.content.decode("utf-8")
@@ -35,6 +34,7 @@ def to_csv(data, timestamp, dest_path, reset=False):
     for d in data:
         f.write(", ".join(d) + ", {}\n".format(timestamp))
     f.close()
+
 
 def parse_args():
     p = argparse.ArgumentParser(description=__doc__)
