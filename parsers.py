@@ -21,7 +21,7 @@ def parse_grad(html):
 
 
 def parse_hall(html):
-    pat = re.compile('<font color="#000000"><strong><font size="2" face="Arial, Helvetica, sans\-serif">\s+(\d+)\s+<\/font><\/strong><\/font>\s+<\/div>\s+<\/td>\s+<td align="center" valign="middle" bgcolor="#\w{6}"\s+<div align="center">\s+<font color="#\w{6}"><font size="1" face="Arial, Helvetica, sans\-serif">\s+([\w\s\-\(\)]+)\s+<\/font><\/font>\s+<\/div>\s+<\/td>\s+<td align="center" valign="middle" bgcolor="#\w{6}"\s+<div align="center">\s+<font color="#\w{6}"><font size="2" face="Arial, Helvetica, sans-serif">\s+([\w\s]+)\s+<\/font><\/font>\s+<\/div>\s+<\/td>')
+    pat = re.compile('<font color="#000000"><strong><font size="2" face="Arial, Helvetica, sans\-serif">\s+(\d+)\s+<\/font><\/strong><\/font>\s+<\/div>\s+<\/td>\s+<td align="center" valign="middle" bgcolor="#\w{6}"\s+<div align="center">\s+<font color="#\w{6}"><font size="1" face="Arial, Helvetica, sans\-serif">\s+([\w\s\-\(\)]+)\s+<\/font><\/font>\s+<\/div>\s+<\/td>\s+<td align="center" valign="middle" bgcolor="#\w{6}"\s+<div align="center">\s+<font color="#\w{6}"><font size="2" face="Arial, Helvetica, sans-serif">\s([\w\s]+)(<br><font size="1">[\S\s]+<\/font>)?\s+<\/font><\/font>\s+<\/div>\s+<\/td>')
     results = pat.findall(html)
     data = list()
     for res in results:
