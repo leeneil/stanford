@@ -12,6 +12,13 @@ def get_html(url):
     return html
 
 
+def crawl_undergrad():
+    # html = open("data/grad_sample.html").read()
+    html = get_html("https://www.laundryalert.com/cgi-bin/STAN9568/LMPage")
+    data = parse_grad(html)
+    return data
+
+
 def crawl_grad():
     # html = open("data/grad_sample.html").read()
     html = get_html("https://www.laundryalert.com/cgi-bin/stan9570/LMPage")
@@ -56,13 +63,17 @@ def main():
             t0 = time.time()
             timestamp = datetime.datetime.now()
             print(timestamp)
+            data = crawl_undergrad()
+            if args.output_path:
+                dest = os.path.join(args.output_path, "undergrad", "{}.csv".format(time.strftime("%Y%m%d", time.localtime())))
+                to_csv(data, timestamp, dest, reset=reset)
             data = crawl_grad()
             if args.output_path:
-                dest = os.path.join(args.output_path, "grad.csv")
+                dest = os.path.join(args.output_path, "grad", "{}.csv".format(time.strftime("%Y%m%d", time.localtime())))
                 to_csv(data, timestamp, dest, reset=reset)
             data = crawl_munger1()
             if args.output_path:
-                dest = os.path.join(args.output_path, "munger1.csv")
+                dest = os.path.join(args.output_path, "munger1", "{}.csv".format(time.strftime("%Y%m%d", time.localtime())))
                 to_csv(data, timestamp, dest, reset=reset)
             reset = False
 
